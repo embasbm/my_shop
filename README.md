@@ -1,24 +1,12 @@
-# README
+## About
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+``` rails g new app [-d mysql] [-T]```
 
-Things you may want to cover:
+We will use mysql as DBMS, and will avoid test folder generic folder
 
-* Ruby version
+- model `Product(code, name, price:decimal)`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Concerns
+## Reference
+embasbm@gmail.com
+## TODOs
