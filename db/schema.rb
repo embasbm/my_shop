@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_07_153307) do
+ActiveRecord::Schema.define(version: 2018_09_11_111802) do
+
   create_table "pricing_rules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.integer "count"
@@ -24,9 +25,10 @@ ActiveRecord::Schema.define(version: 2018_09_07_153307) do
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.decimal "price", precision: 10
+    t.decimal "price", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "pricing_rules", "products"
 end
