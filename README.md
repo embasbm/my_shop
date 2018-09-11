@@ -13,6 +13,10 @@ We will use mysql as DBMS, and will avoid test folder generic folder
 - model `Product(code, name, price:decimal)`
 
 ## Concerns
+
+Decided to use a rails Service, since it seem the best option because it does not apply on any MVC part.
+Might be not that necessary to actually use a rails app, but it just makes it easy, encapsulating all the code including the rspec tests.
+
 ## Reference
 embasbm@gmail.com
 ## TODOs
