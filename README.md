@@ -21,7 +21,7 @@ Might be not that necessary to actually use a rails app, but it just makes it ea
 
 ```rspec``` will test all the cases available on [here](https://github.com/cabify/rubyChallenge)
 
-To try different cases: please, use `rails console
+To try different cases: please, use `rails console`
 
 ## Reference
 embasbm@gmail.com
