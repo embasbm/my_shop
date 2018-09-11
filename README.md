@@ -11,6 +11,8 @@ We will use mysql as DBMS, and will avoid test folder generic folder
 ```
 
 - model `Product(code, name, price:decimal)`
+- model `PricingRule(product, count, price:decimal)`
+
 
 ## Concerns
 
