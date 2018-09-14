@@ -14,14 +14,14 @@ class Checkout
 
   def total
     @pricing_rules.each do |offer|
-      retrive_product_for(offer)
+      retrieve_products_for(offer)
     end
     @total += @products.collect {|x| get_price(x)}.sum
     @total.to_s
   end
 
   private
-    def retrive_product_for(offer)
+    def retrieve_products_for(offer)
       similar_products = @products.select {|x| x == offer.product.code.downcase}
       if offer.bulk_purchase
         bulk_purchase(similar_products, offer)
