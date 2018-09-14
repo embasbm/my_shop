@@ -22,7 +22,7 @@ embasbm@gmail.com
 
 These are some points the reviewers have sent to me out of the reviews:
 
-* Code style is not good: the `retrieve_product_for()` is very long a very complex.
+* ~~Code style is not good: the `retrieve_product_for()` is very long a very complex.~~
 
 * Doesn't follow S.O.L.I.D principles:
 
