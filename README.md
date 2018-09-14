@@ -20,14 +20,14 @@ embasbm@gmail.com
 
 ## REVIEW
 
-  These are some points the reviewers have sent to me out of the reviews:
+These are some points the reviewers have sent to me out of the reviews:
 
-    * Code style is not good: the `retrieve_product_for()` is very long a very complex.
+* Code style is not good: the `retrieve_product_for()` is very long a very complex.
 
-    * Doesn't follow S.O.L.I.D principles:
+* Doesn't follow S.O.L.I.D principles:
 
-      ** The Checkout class is the only one with code, the responsibilities of the code aren't well separated between Product and PricingRule.
+  ** The Checkout class is the only one with code, the responsibilities of the code aren't well separated between Product and PricingRule.
 
-    * Test support is very limited.
+* Test support is very limited.
 
-    ~~* Rails application is not needed~~
+* ~~Rails application is not needed~~
