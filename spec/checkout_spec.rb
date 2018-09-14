@@ -1,17 +1,26 @@
-require 'rails_helper'
+require 'checkout'
 
-describe CheckoutService do
+describe Checkout do
   before(:all) do
-    @voucher = FactoryBot.create(:product, code: 'VOUCHER',name: 'Cabify Voucher', price: 5.00)
-    @tshirt = FactoryBot.create(:product, code: 'TSHIRT',name: 'Cabify T-Shirt', price: 20.00)
-    @mug = FactoryBot.create(:product, code: 'MUG',name: 'Cafify Coffee Mug', price: 7.50)
-    @marketing_offer = FactoryBot.create(:pricing_rule, count: 2, price: @voucher.price, product: @voucher)
-    @fco_offer = FactoryBot.create(:pricing_rule, count: 3, price: 19.00, bulk_purchase: true, product: @tshirt)
+    @voucher = Product.new('VOUCHER', 'Cabify Voucher', 5.00)
+    @tshirt  = Product.new('TSHIRT', 'Cabify T-Shirt', 20.00)
+    @mug     = Product.new('MUG', 'Cafify Coffee Mug', 7.50)
+
+    @marketing_offer = PricingRule.new(2, @voucher.price, @voucher)
+    @fco_offer       = PricingRule.new(3, 19.00, true, @tshirt)
+    @pricing_rules = [@marketing_offer, @fco_offer]
+  end
+
+  describe 'Initialization' do
+    it '.new' do
+      co = Checkout.new([@marketing_offer])
+      expect(co).to have_attributes(products: [], pricing_rules: [@marketing_offer])
+    end
   end
 
   describe "#scan" do
     it 'add product to checkout product list' do
-      co = CheckoutService.new(PricingRule.all)
+      co = Checkout.new([@marketing_offer, @fco_offer])
       expect {
         co.scan(@voucher.code)
       }.to change(co.products, :count).by(1)
@@ -20,8 +29,7 @@ describe CheckoutService do
 
   describe "#total" do
     it 'count all prices if no offer applied' do
-      pricing_rules = PricingRule.all
-      co = CheckoutService.new(pricing_rules)
+      co = Checkout.new(@pricing_rules)
       co.scan('VOUCHER')
       co.scan('TSHIRT')
       co.scan('MUG')
@@ -29,8 +37,7 @@ describe CheckoutService do
     end
 
     it 'applies 2 for 1 offer' do
-      pricing_rules = PricingRule.all
-      co = CheckoutService.new(pricing_rules)
+      co = Checkout.new(@pricing_rules)
       co.scan("VOUCHER")
       co.scan("VOUCHER")
       co.scan("TSHIRT")
@@ -38,8 +45,7 @@ describe CheckoutService do
     end
 
     it 'applies bulk offer' do
-      pricing_rules = PricingRule.all
-      co = CheckoutService.new(pricing_rules)
+      co = Checkout.new(@pricing_rules)
       co.scan('TSHIRT')
       co.scan('TSHIRT')
       co.scan('TSHIRT')
@@ -49,8 +55,7 @@ describe CheckoutService do
     end
 
     it 'applies multiple offers' do
-      pricing_rules = PricingRule.all
-      co = CheckoutService.new(pricing_rules)
+      co = Checkout.new(@pricing_rules)
       co.scan('VOUCHER')
       co.scan('TSHIRT')
       co.scan('VOUCHER')

@@ -35,5 +35,7 @@ embasbm@gmail.com
 
   - Code style is not good: the `retrieve_product_for()` is very long a very complex.
   - Doesn't follow S.O.L.I.D principles: The Checkout class is the only one with code, the responsibilities of the code aren't well separated between Product and PricingRule.
+
   - Test support is very limited.
+
   ~~- Rails application is not needed~~
